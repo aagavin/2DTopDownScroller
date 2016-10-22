@@ -1,16 +1,28 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerController : MonoBehaviour {
-	// PUBLIC INSTANCE VARIABLES +++++++++++++++++++++++++++++++++++++++
-	//public float speed;
-	public Boundary boundary;
 
+/*
+ * Aaron Fernandes
+ * 300773526
+ *  Last Modified: Aaron Fernandes
+ *  Date last Modified: 10/22/2016
+ *  Program description: A 2D top down scroller using the Unity Game Engine
+ *  Revision History: See https://github.com/aagavin/2DTopDownScroller
+ */
+
+public class PlayerController : MonoBehaviour {
+    // PUBLIC INSTANCE VARIABLES +++++++++++++++++++++++++++++++++++++++
+    // get a reference to the gameController
+    public GameController gameController;
+    //public float speed;
+    public Boundary boundary;
 	// get a reference to the camera to make mouse input work
-	public Camera camera; 
-	
-	// PRIVATE INSTANCE VARIABLES
-	private Vector2 _newPosition = new Vector2(0.0f, 0.0f);
+	public Camera camera;
+
+
+    // PRIVATE INSTANCE VARIABLES
+    private Vector2 _newPosition = new Vector2(0.0f, 0.0f);
 	
 	// Use this for initialization
 	void Start () {
@@ -45,7 +57,15 @@ public class PlayerController : MonoBehaviour {
 		gameObject.GetComponent<Transform>().position = this._newPosition;
 	}
 
-	private void _BoundaryCheck() {
+
+    /*
+     ******* Private Methods
+     */
+
+    /// <summary>
+    /// Boundary Check
+    /// </summary>
+    private void _BoundaryCheck() {
 		if (this._newPosition.x < this.boundary.xMin) {
 			this._newPosition.x = this.boundary.xMin;
 		}
@@ -54,4 +74,16 @@ public class PlayerController : MonoBehaviour {
 			this._newPosition.x = this.boundary.xMax;
 		}
 	}
+
+
+    /// <summary>
+    /// OnTrigger for when player hits Enemy
+    /// </summary>
+    /// <param name="other"></param>
+    private void OnTriggerEnter2D(Collider2D other) {
+        if (other.gameObject.CompareTag("Enemy")){
+            this.gameController.Lives -= 1;
+
+        }
+    }
 }

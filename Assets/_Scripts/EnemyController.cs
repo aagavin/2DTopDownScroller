@@ -6,7 +6,7 @@ using System.Collections;
  * 300773526
  *  Last Modified: Aaron Fernandes
  *  Date last Modified: 10/22/2016
- *  Program description: 
+ *  Program description: A 2D top down scroller using the Unity Game Engine
  *  Revision History: See https://github.com/aagavin/2DTopDownScroller
  */
 
@@ -25,6 +25,7 @@ public class EnemyController : MonoBehaviour {
 	// PUBLIC INSTANCE VARIABLES
 	public Speed speed;
 	public Boundary boundary;
+    public GameController gameController;
 
 	// PRIVATE INSTANCE VARIABLES
 	private float _CurrentSpeed;
@@ -52,5 +53,7 @@ public class EnemyController : MonoBehaviour {
 		this._CurrentSpeed = Random.Range (speed.minSpeed, speed.maxSpeed);
 		Vector2 resetPosition = new Vector2 (Random.Range(boundary.xMin, boundary.xMax), boundary.yMax);
 		gameObject.GetComponent<Transform> ().position = resetPosition;
-	}
+        gameController.Score += 10;
+
+    }
 }
