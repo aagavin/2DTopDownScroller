@@ -1,8 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-// reference to the UI namespace
-using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
 
 /*
  * Aaron Fernandes
@@ -12,6 +10,7 @@ using UnityEngine.UI;
  *  Program description: A 2D top down scroller using the Unity Game Engine
  *  Revision History: See https://github.com/aagavin/2DTopDownScroller
  */
+
 public class GameController : MonoBehaviour {
 	// PUBLIC INSTANCE VARIABLES
 	public int tankCount;
@@ -19,60 +18,25 @@ public class GameController : MonoBehaviour {
     [Header("Game Objects")]
     public GameObject tank;
 
-    [Header("UI Objects")]
-    public Text LivesLabel;
-    public Text ScoreLabel;
-
-    // PRIVATE INSTANCE VARIABLES
-    private int _lives;
-    private int _score;
-
-
-    /// <summary>
-    /// Public propities
-    /// </summary>
-    /// 
-    //Lives 
-    public int Lives {
-        get {
-            return this._lives;
-        }
-        set {
-            this._lives = value;
-            this.LivesLabel.text = "Lives: " + this._lives;
-        }
-    }
-
-    //Score
-    public int Score
-    {
-        get
-        {
-            return this._score;
-        }
-
-        set
-        {
-            this._score = value;
-            this.ScoreLabel.text = "Score: " +this._score;
-        }
-    }
-
 
     // Use this for initialization
     void Start () {
         this._init();
-		this._GenerateTanks ();
+        this._GenerateTanks();
 	}
 
     // Update is called once per frame
     void Update() { }
 
-    private void _init()
-    {
-        this._lives = 10;
-        this._score = 0;
+    void Awake() {
+        DontDestroyOnLoad(transform.gameObject);
     }
+
+
+    /// <summary>
+    ///     
+    /// </summary>
+    private void _init(){}
 
 	// generate Tanks
 	private void _GenerateTanks() {
@@ -80,4 +44,13 @@ public class GameController : MonoBehaviour {
 			Instantiate(tank);
 		}
 	}
+
+
+    /// <summary>
+    /// Click handler for when a button is clicked
+    /// </summary>
+    public void RestartButton_Clicked()
+    {
+        SceneManager.LoadScene("Main");
+    }
 }

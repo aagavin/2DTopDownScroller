@@ -12,9 +12,6 @@ using System.Collections;
  */
 
 public class PlayerController : MonoBehaviour {
-    // PUBLIC INSTANCE VARIABLES +++++++++++++++++++++++++++++++++++++++
-    // get a reference to the gameController
-    public GameController gameController;
     //public float speed;
     public Boundary boundary;
 	// get a reference to the camera to make mouse input work
@@ -76,14 +73,4 @@ public class PlayerController : MonoBehaviour {
 	}
 
 
-    /// <summary>
-    /// OnTrigger for when player hits Enemy
-    /// </summary>
-    /// <param name="other"></param>
-    private void OnTriggerEnter2D(Collider2D other) {
-        if (other.gameObject.CompareTag("Enemy")){
-            this.gameController.Lives -= 1;
-
-        }
-    }
 }
