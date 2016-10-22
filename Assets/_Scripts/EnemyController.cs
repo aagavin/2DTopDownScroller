@@ -1,6 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/*
+ * Aaron Fernandes
+ * 300773526
+ *  Last Modified: Aaron Fernandes
+ *  Date last Modified: 10/22/2016
+ *  Program description: 
+ *  Revision History: See https://github.com/aagavin/2DTopDownScroller
+ */
+
 [System.Serializable]
 public class Speed {
 	public float minSpeed, maxSpeed;
